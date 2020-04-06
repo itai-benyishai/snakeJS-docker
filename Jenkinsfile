@@ -1,10 +1,9 @@
-#!/usr/bun/env groovy
+#!/usr/bin/env groovy
 node {
     def app
 
     stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
+        //make sure we have the repository cloned to our workspace
         checkout scm
     }
 
@@ -14,7 +13,7 @@ node {
     }
 
     stage('Test image') {
-    // some fake test
+        // some fake test
 
         app.inside {
             sh 'echo "Tests passed"'
