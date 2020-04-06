@@ -12,7 +12,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("itai-benyishai/snakeJS-docker")
+        app = docker.build("snakejs")
     }
 
     stage('Test image') {
