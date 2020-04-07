@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-py-service
+spec:
+  selector:
+    app: hello-py
+  ports:
+  - protocol: "TCP"
+    port: 31234
+    targetPort: 5000
+  type: LoadBalancer
+  externalIPs:
+  - 172.31.30.100
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-py
+spec:
+  selector:
+    matchLabels:
+      app: hello-py
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello-py
+    spec:
+      containers:
+      - name: hello-python
+        image: itaibenyishai/py-hello:latest
+        ports:
+        - containerPort: 5000
