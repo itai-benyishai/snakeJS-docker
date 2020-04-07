@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-py-service
+  name: snakejs-service
 spec:
   selector:
-    app: hello-py
+    app: snakejs
   ports:
   - protocol: "TCP"
     port: 31234
-    targetPort: 5000
+    targetPort: 80
   type: LoadBalancer
   externalIPs:
   - 172.31.30.100
@@ -17,19 +17,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-py
+  name: snakejs
 spec:
   selector:
     matchLabels:
-      app: hello-py
+      app: snakejs
   replicas: 2
   template:
     metadata:
       labels:
-        app: hello-py
+        app: snakejs
     spec:
       containers:
-      - name: hello-python
-        image: itaibenyishai/py-hello:latest
+      - name: snakejs
+        image: itaibenyishai/snakejs:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 80
